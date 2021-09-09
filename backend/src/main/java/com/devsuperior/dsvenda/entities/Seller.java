@@ -13,7 +13,7 @@ public class Seller {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "seller",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "seller",fetch = FetchType.LAZY)
     private List<Sale> sales = new ArrayList<>();
 
     public Seller(){}

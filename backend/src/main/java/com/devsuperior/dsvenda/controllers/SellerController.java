@@ -1,6 +1,7 @@
-package com.devsuperior.dsvenda.services;
+package com.devsuperior.dsvenda.controllers;
 
 import com.devsuperior.dsvenda.dto.SellerDTO;
+import com.devsuperior.dsvenda.services.SellerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

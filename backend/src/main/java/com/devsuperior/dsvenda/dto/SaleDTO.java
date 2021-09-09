@@ -1,36 +1,35 @@
-package com.devsuperior.dsvenda.entities;
+package com.devsuperior.dsvenda.dto;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import com.devsuperior.dsvenda.entities.Sale;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Objects;
 
-@Entity(name = "tb_sales")
-public class Sale {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SaleDTO {
     private Long id;
     private Integer visited;
     private Integer deals;
     private Double amount;
     private LocalDate date;
+    private SellerDTO seller;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")
-    private Seller seller;
+    public SaleDTO(){}
 
-    public Sale(){}
-
-    public Sale(Long id, Integer visited, Integer deals, Double amount, LocalDate date, Seller seller) {
+    public SaleDTO(Long id, Integer visited, Integer deals, Double amount, LocalDate date, SellerDTO seller) {
         this.id = id;
         this.visited = visited;
         this.deals = deals;
         this.amount = amount;
         this.date = date;
         this.seller = seller;
+    }
+
+    public SaleDTO(Sale sale) {
+        this.id = sale.getId();
+        this.visited = sale.getVisited();
+        this.deals = sale.getDeals();
+        this.amount = sale.getAmount();
+        this.date = sale.getDate();
+        this.seller = new SellerDTO(sale.getSeller());
     }
 
     public Long getId() {
@@ -53,7 +52,7 @@ public class Sale {
         return date;
     }
 
-    public Seller getSeller() {
+    public SellerDTO getSeller() {
         return seller;
     }
 
@@ -77,20 +76,7 @@ public class Sale {
         this.date = date;
     }
 
-    public void setSeller(Seller seller) {
+    public void setSeller(SellerDTO seller) {
         this.seller = seller;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Sale sale = (Sale) o;
-        return Objects.equals(id, sale.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }
