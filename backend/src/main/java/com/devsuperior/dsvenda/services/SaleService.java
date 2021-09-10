@@ -2,6 +2,8 @@ package com.devsuperior.dsvenda.services;
 
 import com.devsuperior.dsvenda.dto.SaleDTO;
 import com.devsuperior.dsvenda.dto.SellerDTO;
+import com.devsuperior.dsvenda.dto.SuccessSaleDTO;
+import com.devsuperior.dsvenda.dto.SumSaleDTO;
 import com.devsuperior.dsvenda.repositories.SaleRepository;
 import com.devsuperior.dsvenda.repositories.SellerRepository;
 import org.springframework.data.domain.Page;
@@ -23,5 +25,13 @@ public class SaleService {
     public Page<SaleDTO> findAll(Pageable pageable) {
         return repository.findAll(pageable)
                 .map(sale -> new SaleDTO(sale));
+    }
+
+    public List<SuccessSaleDTO> successSaleGroupBySeller(){
+        return repository.successSaleGroupBySeller();
+    }
+
+    public List<SumSaleDTO> sumSaleGroupBySeller(){
+        return repository.sumSaleGroupBySeller();
     }
 }
