@@ -37,7 +37,7 @@ const BarChart = () => {
         series: [{ name: "% Sucesso", data: seriesReponse }],
       });
     });
-  });
+  }, []);
 
   const options = {
     plotOptions: {

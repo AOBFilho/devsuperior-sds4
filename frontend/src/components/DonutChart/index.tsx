@@ -22,7 +22,7 @@ const DonutChart = () => {
       const series = data.map((a) => a.ammount);
       setChartData({ labels, series });
     });
-  });
+  }, []);
 
   const options = {
     legend: {
