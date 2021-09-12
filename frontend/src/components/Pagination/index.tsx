@@ -20,7 +20,10 @@ const Pagination = ({ page, onPageChange }: Prop) => {
       );
     } else if (i + 1 === page.totalPages) {
       numberPages.push(
-        <li className="page-item disabled" key="fim">
+        <li
+          className={`page-item ${page.number === i ? "disabled" : ""}`}
+          key="fim"
+        >
           <span className="page-link">...</span>
         </li>
       );
